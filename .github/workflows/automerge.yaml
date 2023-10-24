@@ -19,7 +19,7 @@ jobs:
       run: |
         git fetch
         git checkout release/dev
-        git pull
+        git pull --allow-unrelated-histories
         git merge main
         git push origin release/dev
 
@@ -29,7 +29,7 @@ jobs:
       run: |
         git fetch
         git checkout release/prd
-        git pull
+        git pull --allow-unrelated-histories
         git merge main
         git push origin release/prd
 
