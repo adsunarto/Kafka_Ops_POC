@@ -12,37 +12,21 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v3
-    
-    - name: Merge to test branch
+
+    - name: Rebase release/dev branch
       env:
-        HG_PAT: ${{ secrets.GH_PAT }}
+        GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git remote update
-        git fetch
-        git checkout test
+        git checkout release/dev
         git pull
-        git merge main
-        git push origin test
+        git rebase master
+        git push --force origin release/dev
 
-    # - name: Merge to nonproduction branch
-    #   env:
-    #     GH_PAT: ${{ secrets.GH_PAT }}
-    #   run: |
-    #     git remote update
-    #     git fetch
-    #     git checkout --track origin/release/dev
-    #     git pull origin release/dev --allow-unrelated-histories
-    #     git merge main
-    #     git push origin release/dev
-
-    # - name: Merge to production branch
-    #   env:
-    #     GH_PAT: ${{ secrets.GH_PAT }}
-    #   run: |
-    #     git remote update
-    #     git fetch
-    #     git checkout --track origin/release/dev
-    #     git pull origin release/dev --allow-unrelated-histories
-    #     git merge main
-    #     git push origin release/prd
-
+    - name: Rebase release/prd branch
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git checkout release/prd
+        git pull
+        git rebase master
+        git push --force origin release/prd
