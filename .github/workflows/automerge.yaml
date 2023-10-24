@@ -17,7 +17,7 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git checkout release/dev
+        git checkout origin/release/dev
         git pull
         git rebase master
         git push --force origin release/dev
@@ -26,7 +26,7 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git checkout release/prd
+        git checkout origin/release/prd
         git pull
         git rebase master
         git push --force origin release/prd
