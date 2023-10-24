@@ -3,7 +3,7 @@ name: Auto Merge to Release Branches
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   merge:
@@ -17,17 +17,17 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git checkout nonproduction
+        git checkout release/dev
         git pull
-        git merge master
-        git push origin nonproduction
+        git merge main
+        git push origin release/dev
 
     - name: Merge to production branch
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git checkout production
+        git checkout release/prd
         git pull
-        git merge master
-        git push origin production
+        git merge main
+        git push origin release/prd
 
