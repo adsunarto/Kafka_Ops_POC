@@ -1,0 +1,36 @@
+name: Auto Merge to Release Branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Rebase release/dev branch
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git remote update
+        git fetch
+        git checkout --track origin/release/dev
+        git pull origin release/dev
+        git rebase main
+        git push --force origin release/dev
+
+    - name: Rebase release/prd branch
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git remote update
+        git fetch
+        git checkout --track origin/release/prd
+        git pull origin release/dev
+        git rebase main
+        git push --force origin release/prd
