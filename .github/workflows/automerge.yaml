@@ -1,0 +1,33 @@
+name: Auto Merge to Release Branches
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Merge to nonproduction branch
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git checkout nonproduction
+        git pull
+        git merge master
+        git push origin nonproduction
+
+    - name: Merge to production branch
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git checkout production
+        git pull
+        git merge master
+        git push origin production
+
