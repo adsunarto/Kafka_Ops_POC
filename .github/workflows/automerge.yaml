@@ -17,6 +17,8 @@ jobs:
       env:
         HG_PAT: ${{ secrets.GH_PAT }}
       run: |
+        git remote update
+        git fetch
         git checkout test
         git pull
         git merge main
