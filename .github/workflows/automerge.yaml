@@ -17,8 +17,9 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
+        git remote update
         git fetch
-        git checkout release/dev
+        git checkout --track origin/release/dev
         git pull --allow-unrelated-histories
         git merge main
         git push origin release/dev
@@ -27,8 +28,9 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
+        git remote update
         git fetch
-        git checkout release/prd
+        git checkout --track origin/release/dev
         git pull --allow-unrelated-histories
         git merge main
         git push origin release/prd
