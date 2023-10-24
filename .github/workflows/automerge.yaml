@@ -12,6 +12,15 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v3
+    
+    - name: Merge to test branch
+      env:
+        HG_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git checkout test
+        git pull
+        git merge main
+        git push origin test
 
     - name: Merge to nonproduction branch
       env:
@@ -24,14 +33,14 @@ jobs:
         git merge main
         git push origin release/dev
 
-    - name: Merge to production branch
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: |
-        git remote update
-        git fetch
-        git checkout --track origin/release/dev
-        git pull origin release/dev --allow-unrelated-histories
-        git merge main
-        git push origin release/prd
+    # - name: Merge to production branch
+    #   env:
+    #     GH_PAT: ${{ secrets.GH_PAT }}
+    #   run: |
+    #     git remote update
+    #     git fetch
+    #     git checkout --track origin/release/dev
+    #     git pull origin release/dev --allow-unrelated-histories
+    #     git merge main
+    #     git push origin release/prd
 
