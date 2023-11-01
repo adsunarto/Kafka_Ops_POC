@@ -31,7 +31,7 @@ jobs:
       run: |
         git checkout release/dev
         git pull origin release/dev
-        git merge main
+        git merge main --allow-unrelated-histories
         git status
         git push origin release/dev
 
