@@ -21,7 +21,7 @@ jobs:
         git config --global user.name "Andrew Sunarto"
         git config --global pull.ff only
         git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
-        git fetch
+        git fetch --prune
         cd Kafka_Ops_POC
 
     - name: Merge main branch into releae/dev
