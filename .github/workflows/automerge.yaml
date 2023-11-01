@@ -29,7 +29,6 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/dev
-        git pull
         git merge main
         git push
 
