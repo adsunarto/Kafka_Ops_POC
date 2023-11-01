@@ -30,6 +30,7 @@ jobs:
       run: |
         git checkout release/dev
         git pull
+        git push
         git merge main
         git push
 
@@ -39,6 +40,7 @@ jobs:
       run: |
         git checkout release/int
         git pull
+        git push
         git merge main
         git push
 
@@ -48,6 +50,7 @@ jobs:
       run: |
         git checkout release/uat
         git pull
+        git push
         git merge main
         git push
 
@@ -57,5 +60,6 @@ jobs:
       run: |
         git checkout release/prf
         git pull
+        git push
         git merge main
         git push
