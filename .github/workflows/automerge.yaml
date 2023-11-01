@@ -18,3 +18,11 @@ jobs:
           from_branch: main
           target_branch: release/dev
           github_token: ${{ secrets.TOKEN }}
+
+      - name: Merge main -> release/int
+        uses: devmasx/merge-branch@master
+        with:
+          type: now
+          from_branch: main
+          target_branch: release/int
+          github_token: ${{ secrets.TOKEN }}
