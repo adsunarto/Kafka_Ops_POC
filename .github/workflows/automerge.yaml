@@ -24,7 +24,7 @@ jobs:
         git fetch
         cd Kafka_Ops_POC
 
-    - name: Merge main branch into releae/dev
+    - name: Merge main branch into release/dev
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
