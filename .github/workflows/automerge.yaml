@@ -25,7 +25,6 @@ jobs:
         cd Kafka_Ops_POC
         git checkout release/dev
         git merge main
-        git commit -am "Merging changes from main into release/dev"
         git push
 
     # - name: Rebase release/prd branch
