@@ -23,13 +23,13 @@ jobs:
         git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
         git fetch
         cd Kafka_Ops_POC
-        git checkout release/dev
-        git pull
-        git push
         git checkout main
         git pull
         git push
-        git merge release/dev
+        git checkout release/dev
+        git pull
+        git push
+        git merge main
 
     # - name: Rebase release/prd branch
     #   env:
