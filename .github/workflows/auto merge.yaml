@@ -1,0 +1,61 @@
+name: Auto Merge to Release Branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v3
+
+    - name: Clone repo
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.email "asunarto@corelogic.com"
+        git config --global user.name "Andrew Sunarto"
+        git config --global pull.ff only
+        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
+        git fetch
+        cd Kafka_Ops_POC
+
+    - name: Merge main branch into release/dev
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git checkout release/dev
+        git pull
+        git merge main
+        git push
+
+    # - name: Merge main branch into releae/int
+    #   env:
+    #     GH_PAT: ${{ secrets.GH_PAT }}
+    #   run: |
+    #     git checkout release/int
+    #     git pull
+    #     git merge main
+    #     git push
+
+    # - name: Merge main branch into releae/uat
+    #   env:
+    #     GH_PAT: ${{ secrets.GH_PAT }}
+    #   run: |
+    #     git checkout release/uat
+    #     git pull
+    #     git merge main
+    #     git push
+
+    # - name: Merge main branch into releae/prf
+    #   env:
+    #     GH_PAT: ${{ secrets.GH_PAT }}
+    #   run: |
+    #     git checkout release/prf
+    #     git pull
+    #     git merge main
+    #     git push
