@@ -29,6 +29,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/dev
+        git pull
         git merge main --allow-unrelated-histories
         git push
 
