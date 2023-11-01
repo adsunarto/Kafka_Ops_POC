@@ -13,24 +13,31 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Rebase release/dev branch
+    - name: Merge release/dev branch into main
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git remote update
+        git config --global user.email "asunarto@corelogic.com"
+        git config --global user.name "Andrew Sunarto"
+        git config --global pull.ff only
+        git clone "https://${{ secrets.USER }}:${{ secrets.PASS }}@github.com/adsunarto/Kafka_Ops_POC.git"
         git fetch
-        git checkout --track origin/release/dev
-        git pull origin release/dev
-        git rebase main
-        git push --force origin release/dev
+        cd Kafka_Ops_POC
+        git checkout main
+        git pull
+        git push
+        git checkout release/dev
+        git pull
+        git push
+        git merge main
 
-    - name: Rebase release/prd branch
-      env:
-        GH_PAT: ${{ secrets.GH_PAT }}
-      run: |
-        git remote update
-        git fetch
-        git checkout --track origin/release/prd
-        git pull origin release/dev
-        git rebase main
-        git push --force origin release/prd
+    # - name: Rebase release/prd branch
+    #   env:
+    #     GH_PAT: ${{ secrets.GH_PAT }}
+    #   run: |
+    #     git remote update
+    #     git fetch
+    #     git checkout --track origin/release/prd
+    #     git pull origin release/dev
+    #     git rebase main
+    #     git push --force origin release/prd
