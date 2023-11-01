@@ -23,15 +23,17 @@ jobs:
         git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
         git fetch
         cd Kafka_Ops_POC
+        git pull origin main
 
     - name: Merge main branch into release/dev
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/dev
-        git pull
-        git merge main --allow-unrelated-histories
-        git push
+        git pull origin release/dev
+        git merge main
+        git status
+        git push origin release/dev
 
     # - name: Merge main branch into releae/int
     #   env:
