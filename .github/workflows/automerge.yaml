@@ -13,7 +13,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Merge main branch into releae/dev
+    - name: Clone repo
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
@@ -23,6 +23,11 @@ jobs:
         git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
         git fetch
         cd Kafka_Ops_POC
+
+    - name: Merge main branch into releae/dev
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
         git checkout release/dev
         git merge main
         git push
@@ -31,12 +36,6 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git config --global user.email "asunarto@corelogic.com"
-        git config --global user.name "Andrew Sunarto"
-        git config --global pull.ff only
-        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
-        git fetch
-        cd Kafka_Ops_POC
         git checkout release/int
         git merge main
         git push
@@ -45,12 +44,6 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git config --global user.email "asunarto@corelogic.com"
-        git config --global user.name "Andrew Sunarto"
-        git config --global pull.ff only
-        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
-        git fetch
-        cd Kafka_Ops_POC
         git checkout release/uat
         git merge main
         git push
@@ -59,12 +52,6 @@ jobs:
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
-        git config --global user.email "asunarto@corelogic.com"
-        git config --global user.name "Andrew Sunarto"
-        git config --global pull.ff only
-        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
-        git fetch
-        cd Kafka_Ops_POC
         git checkout release/prf
         git merge main
         git push
