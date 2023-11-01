@@ -29,7 +29,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/dev
-        git merge main
+        git merge main --allow-unrelated-histories
         git push
 
     # - name: Merge main branch into releae/int
