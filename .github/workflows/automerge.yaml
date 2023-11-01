@@ -13,7 +13,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@v3
 
-    - name: Merge release/dev branch into main
+    - name: Merge main branch into releae/dev
       env:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
