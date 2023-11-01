@@ -29,6 +29,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/dev
+        git pull
         git merge main
         git push
 
@@ -37,6 +38,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/int
+        git pull
         git merge main
         git push
 
@@ -45,6 +47,7 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/uat
+        git pull
         git merge main
         git push
 
@@ -53,5 +56,6 @@ jobs:
         GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git checkout release/prf
+        git pull
         git merge main
         git push
