@@ -20,7 +20,7 @@ jobs:
         git config --global user.email "asunarto@corelogic.com"
         git config --global user.name "Andrew Sunarto"
         git config --global pull.ff only
-        git clone "https://${{ secrets.USER }}:${{ secrets.PASS }}@github.com/adsunarto/Kafka_Ops_POC.git"
+        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
         git fetch
         cd Kafka_Ops_POC
         git checkout main
