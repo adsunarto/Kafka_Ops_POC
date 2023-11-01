@@ -27,13 +27,44 @@ jobs:
         git merge main
         git push
 
-    # - name: Rebase release/prd branch
-    #   env:
-    #     GH_PAT: ${{ secrets.GH_PAT }}
-    #   run: |
-    #     git remote update
-    #     git fetch
-    #     git checkout --track origin/release/prd
-    #     git pull origin release/dev
-    #     git rebase main
-    #     git push --force origin release/prd
+    - name: Merge main branch into releae/int
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.email "asunarto@corelogic.com"
+        git config --global user.name "Andrew Sunarto"
+        git config --global pull.ff only
+        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
+        git fetch
+        cd Kafka_Ops_POC
+        git checkout release/int
+        git merge main
+        git push
+
+    - name: Merge main branch into releae/uat
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.email "asunarto@corelogic.com"
+        git config --global user.name "Andrew Sunarto"
+        git config --global pull.ff only
+        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
+        git fetch
+        cd Kafka_Ops_POC
+        git checkout release/uat
+        git merge main
+        git push
+
+    - name: Merge main branch into releae/prf
+      env:
+        GH_PAT: ${{ secrets.GH_PAT }}
+      run: |
+        git config --global user.email "asunarto@corelogic.com"
+        git config --global user.name "Andrew Sunarto"
+        git config --global pull.ff only
+        git clone "https://${{ secrets.USER }}:${{ secrets.TOKEN }}@github.com/adsunarto/Kafka_Ops_POC.git"
+        git fetch
+        cd Kafka_Ops_POC
+        git checkout release/prf
+        git merge main
+        git push
